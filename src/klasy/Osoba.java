@@ -11,6 +11,7 @@ public abstract class Osoba implements czy_obiekt_zawiera_szukana_interface {
     private int wiek;
     private plec_enum plec;
 
+    private String kamil;
     public Osoba(String imie, String nazwisko, String pesel, int wiek, plec_enum plec) {
         this.imie = imie;
         this.nazwisko = nazwisko;

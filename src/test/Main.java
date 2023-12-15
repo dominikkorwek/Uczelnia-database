@@ -38,13 +38,6 @@ public class Main {
 
             }
 
-            if (osoba instanceof Pracownik_badawczo_dydaktyczny){
-            }
-
-
-            if (osoba instanceof Pracownik_administracyjny){
-            }
-
             if (osoba instanceof Student) {
                 ((Student) osoby.get(2)).zapis_na_kurs(kurs);
                 menager_list.dodaj_na_liste(lista_Studentow,(Student) osoba);

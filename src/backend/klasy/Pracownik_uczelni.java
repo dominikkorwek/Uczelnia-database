@@ -11,12 +11,6 @@ public abstract class Pracownik_uczelni extends Osoba{
     private float pensja;
     private String stanowisko;
 
-    public Pracownik_uczelni(String imie, String nazwisko, String pesel, int wiek, plec_enum plec, int staz_pracy, float pensja, String stanowisko) {
-        super(imie, nazwisko, pesel, wiek, plec);
-        this.staz_pracy = staz_pracy;
-        this.pensja = pensja;
-        this.stanowisko = stanowisko;
-    }
 
     public Pracownik_uczelni() {
     }

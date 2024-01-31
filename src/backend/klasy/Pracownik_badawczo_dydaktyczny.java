@@ -5,10 +5,6 @@ import backend.enumy.plec_enum;
 public class Pracownik_badawczo_dydaktyczny extends Pracownik_uczelni{
     private int liczba_publikacji;
 
-    public Pracownik_badawczo_dydaktyczny(String imie, String nazwisko, String pesel, int wiek, plec_enum plec, int staz_pracy, float pensja, String stanowisko, int liczba_publikacji) {
-        super(imie, nazwisko, pesel, wiek, plec, staz_pracy, pensja, stanowisko);
-        this.liczba_publikacji = liczba_publikacji;
-    }
 
     public Pracownik_badawczo_dydaktyczny() {
     }

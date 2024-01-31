@@ -1,7 +1,5 @@
 package frontend.paneleMenu_package;
 
-import backend.Menu_package.Dodawanie_obiektow_package.Dodaj_kurs;
-import backend.Menu_package.Dodawanie_obiektow_package.Dodaj_studenta;
 import frontend.PopUp.dodawanie_package.*;
 import frontend.customView.CustomButton;
 import frontend.customView.CustomPanel;

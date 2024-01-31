@@ -2,12 +2,11 @@ package backend.klasy;
 
 
 import backend.enumy.plec_enum;
-import backend.interfejsy.ObserwujacyStrudent_interface;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Student extends Osoba implements ObserwujacyStrudent_interface {
+public class Student extends Osoba  {
     private int nr_indeksu;
     private int rok_studiow;
 
@@ -17,18 +16,6 @@ public class Student extends Osoba implements ObserwujacyStrudent_interface {
     private boolean isStudent_II_stopnia;
     private boolean studia_stacjonarne;
     private boolean studia_niestacjonarne;
-
-    public Student(String imie, String nazwisko, String pesel, int wiek, plec_enum plec, int nr_indeksu, int rok_studiow, ArrayList<Kursy> kursy_studenta, boolean uczestnik_ERASMUS, boolean student_I_stopnia, boolean isStudent_II_stopnia, boolean studia_stacjonarne, boolean studia_niestacjonarne) {
-        super(imie, nazwisko, pesel, wiek, plec);
-        this.nr_indeksu = nr_indeksu;
-        this.rok_studiow = rok_studiow;
-        this.kursy_studenta = kursy_studenta;
-        this.uczestnik_ERASMUS = uczestnik_ERASMUS;
-        this.student_I_stopnia = student_I_stopnia;
-        this.isStudent_II_stopnia = isStudent_II_stopnia;
-        this.studia_stacjonarne = studia_stacjonarne;
-        this.studia_niestacjonarne = studia_niestacjonarne;
-    }
 
     public Student() {
     }
@@ -137,8 +124,4 @@ public class Student extends Osoba implements ObserwujacyStrudent_interface {
         this.studia_niestacjonarne = studia_niestacjonarne;
     }
 
-    @Override
-    public void aktualizuj_rok_studiow() {
-        setRok_studiow(getRok_studiow()+1);
-    }
 }

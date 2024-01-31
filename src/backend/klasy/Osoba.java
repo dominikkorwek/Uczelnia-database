@@ -15,15 +15,8 @@ public abstract class Osoba implements czy_obiekt_zawiera_szukana_interface, Ser
     private String nazwisko;
     private String pesel;
     private int wiek;
-    private plec_enum plec;
+    private String plec;
 
-    public Osoba(String imie, String nazwisko, String pesel, int wiek, plec_enum plec) {
-        this.imie = imie;
-        this.nazwisko = nazwisko;
-        this.pesel = pesel;
-        this.wiek = wiek;
-        this.plec = plec;
-    }
 
     public Osoba() {
     }
@@ -81,11 +74,11 @@ public abstract class Osoba implements czy_obiekt_zawiera_szukana_interface, Ser
         this.wiek = wiek;
     }
 
-    public plec_enum getPlec() {
+    public String getPlec() {
         return plec;
     }
 
-    public void setPlec(plec_enum plec) {
+    public void setPlec(String plec) {
         this.plec = plec;
     }
 

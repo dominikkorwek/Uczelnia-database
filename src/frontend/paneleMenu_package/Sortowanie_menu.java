@@ -8,8 +8,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Objects;
 
-public class Sortowanie_menu extends CustomPanel implements ActionListener{
+import backend.klasy.*;
+
+import static backend.Bazy_danych_package.Bazy_danych.*;
+
+public class Sortowanie_menu <T> extends CustomPanel implements ActionListener{
     private CustomPanel sortowanie_panel = new CustomPanel();
     private CustomRadioButton sort_kursow_przycisk;
     private CustomRadioButton sort_studentow_przycisk;
@@ -40,24 +47,22 @@ public class Sortowanie_menu extends CustomPanel implements ActionListener{
         this.add(panel);
         this.add(sortowanie_panel);
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == sort_kursow_przycisk)
-            dodaj_sortowanie_kursow();
-        else
-            dodaj_srotowanie_osob();
-    }
+
 
     public void dodaj_srotowanie_osob(){
         remove(sortowanie_panel);
         sortowanie_panel = new CustomPanel();
         nazwisko_przycisk = new CustomButton("sortowanie po nazwisku");
+        nazwisko_przycisk.addActionListener(new sortowanie_osob());
         nazwisko_wiek_przycisk = new CustomButton("sortowanie po wieku");
+        nazwisko_wiek_przycisk.addActionListener(new sortowanie_osob());
         nazwisko_imie_przycisk = new CustomButton("sortowanie po imieniu");
+        nazwisko_imie_przycisk.addActionListener(new sortowanie_osob());
 
         sortowanie_panel.add(nazwisko_przycisk);
         sortowanie_panel.add(nazwisko_imie_przycisk);
         sortowanie_panel.add(nazwisko_wiek_przycisk);
+
 
         this.add(sortowanie_panel);
 
@@ -68,7 +73,9 @@ public class Sortowanie_menu extends CustomPanel implements ActionListener{
         remove(sortowanie_panel);
         sortowanie_panel = new CustomPanel();
         prowadzacy_przycisk = new CustomButton("sortowanie po porwadzacym");
+        prowadzacy_przycisk.addActionListener(new sortowanie_kursow());
         ECTS_przycisk = new CustomButton("sortowanie po ECTS");
+        ECTS_przycisk.addActionListener(new sortowanie_kursow());
 
         sortowanie_panel.add(prowadzacy_przycisk);
         sortowanie_panel.add(ECTS_przycisk);
@@ -78,5 +85,78 @@ public class Sortowanie_menu extends CustomPanel implements ActionListener{
         revalidate();
         repaint();
     }
+    private ArrayList<Osoba>  lista_obecna = new ArrayList<>();
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == sort_kursow_przycisk)
+            dodaj_sortowanie_kursow();
 
+        if(e.getSource() == sort_studentow_przycisk){
+            dodaj_srotowanie_osob();
+            lista_obecna = (lista_studentow);
+        }
+        if(e.getSource() == sort_pracownikow_przycisk){
+            dodaj_srotowanie_osob();
+            lista_obecna = (lista_pracownikow);
+        }
+    }
+
+    class sortowanie_osob implements  ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == nazwisko_imie_przycisk){
+                if (lista_obecna.get(0) instanceof Student)
+                    sortowanie_nazwisko_imie(lista_studentow);
+                else
+                    sortowanie_nazwisko_imie(lista_pracownikow);
+            }
+
+            if (e.getSource() == nazwisko_przycisk){
+                if (lista_obecna.get(0) instanceof Student)
+                    sortowanie_nazwisko(lista_studentow);
+                else
+                    sortowanie_nazwisko(lista_pracownikow);
+            }
+            if (e.getSource() == nazwisko_wiek_przycisk){
+                if (lista_obecna.get(0) instanceof Student)
+                    sortowanie_nazwisko_wiek(lista_studentow);
+                else
+                    sortowanie_nazwisko_wiek(lista_pracownikow);
+            }
+
+        }
+    }
+    private void sortowanie_nazwisko (ArrayList<Osoba> lista){
+        lista.sort(Comparator.comparing(Osoba::getNazwisko));
+    }
+    private void sortowanie_nazwisko_wiek (ArrayList<Osoba> lista){
+        lista.sort((o1, o2) -> {
+            if (Objects.equals(o1.getNazwisko(), o2.getNazwisko())) {
+                return o1.getWiek() - o2.getWiek();
+            } else {
+                return o1.getNazwisko().compareTo(o2.getNazwisko());
+            }
+        });
+    }
+    private void sortowanie_nazwisko_imie ( ArrayList<Osoba> lista){
+        lista.sort((o1, o2) -> {
+            if (Objects.equals(o1.getNazwisko(), o2.getNazwisko())) {
+                return o2.getImie().compareTo(o1.getImie());
+            } else {
+                return o1.getNazwisko().compareTo(o2.getNazwisko());
+            }
+        });
+    }
+
+    class sortowanie_kursow implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == prowadzacy_przycisk)
+                lista_kursow.sort(Comparator.comparing((Kursy k) -> k.getWykladowca().getNazwisko()));
+            if (e.getSource() == ECTS_przycisk)
+                lista_kursow.sort(Comparator.comparingInt(Kursy::getECTS));
+        }
+    }
 }

@@ -32,12 +32,13 @@ public class Wypisywanie_menu extends CustomPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JFrame popUp;
         if (e.getSource() == wyswietl_studentow)
-            popUp = new Wypisywanie_popup(lista_studentow);
+            new Wypisywanie_popup(lista_studentow);
+
         if (e.getSource() == wyswietl_pracownikow)
-            popUp = new Wypisywanie_popup(lista_pracownikow);
+             new Wypisywanie_popup(lista_pracownikow);
+
         if (e.getSource() == wyswietl_kursy)
-            popUp = new Wypisywanie_popup(lista_kursow);
+            new Wypisywanie_popup(lista_kursow);
     }
 }

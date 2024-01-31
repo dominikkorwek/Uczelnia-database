@@ -22,7 +22,7 @@ public class Glowne_menu extends CustomPanel implements ActionListener{
         szukanie_przycik.addActionListener(this);
         usuwanie_przycik = new CustomButton("usuwanie obiektu");
         usuwanie_przycik.addActionListener(this);
-        wypisywanie_przycik = new CustomButton("wyszukiwanie obiektu");
+        wypisywanie_przycik = new CustomButton("wypisanie baz danych");
         wypisywanie_przycik.addActionListener(this);
 
         this.add(dodawanie_przycik);
